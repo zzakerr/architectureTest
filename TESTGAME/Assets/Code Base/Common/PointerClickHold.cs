@@ -15,7 +15,9 @@ namespace Common
 
         public void OnPointerDown(PointerEventData eventData)
         {
+
             hold = true;
+
         }
     }
 }

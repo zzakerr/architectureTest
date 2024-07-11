@@ -7,7 +7,7 @@ public class LevelBuilder : MonoBehaviour
 {
     [Header("Prefabs")]
     [SerializeField] private GameObject PlayerHUDPrefab;
-    [SerializeField] private GameObject LevelGUIPrefab;
+    
 
     [Header("Dependencies")]
     [SerializeField] private PlayerSpawner playerSpawner;
@@ -21,8 +21,7 @@ public class LevelBuilder : MonoBehaviour
 
         player.Init();
 
-        Instantiate(PlayerHUDPrefab);
-        Instantiate(LevelGUIPrefab);
+        Instantiate(PlayerHUDPrefab);     
     }
 
 

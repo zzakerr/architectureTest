@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c54ea6c9785e242b76a116ff5911ad, type: 3}
+  m_Name: Ak-47
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 8210457614656539673, guid: 30637a3df7d136b4f89c35ad7db58c61, type: 3}
+  rateOfFire: 0.2

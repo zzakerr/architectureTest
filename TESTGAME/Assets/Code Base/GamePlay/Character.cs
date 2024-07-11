@@ -1,22 +1,36 @@
 using UnityEngine;
-using Common;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Character : Destructible
 {
-    [SerializeField] private float startSpeed;
-    [SerializeField] private float maxSpeed;
-    [SerializeField] private Transform view;
+    [Header("Урон")]
+    [Range(1f, 100f)]
+    [SerializeField] private int damage;
 
-    private float speed;
-    private Rigidbody2D rigid;
+    [Header("Скорость")]
+    [SerializeField] private float startSpeed;
+
+    [Header("Максимальная скорость")]
+    [SerializeField] private float maxSpeed;
+
+    [Header("Слот с оружием")]
+    [SerializeField] private Weapon weapon;
+
+    [Header("View сущности")]
+    [SerializeField] private Transform view;
 
     [HideInInspector] public float linearX;
     [HideInInspector] public float linearY;
 
+    private float speed;
+    private Rigidbody2D rigid;
 
-    private void Start()
+    public float Speed => speed;
+    public int Damage => damage;
+
+    protected override void Start()
     {
+        base.Start();
         speed = startSpeed;
         rigid = GetComponent<Rigidbody2D>();
     }
@@ -42,6 +56,6 @@ public class Character : Destructible
 
     public void Fire()
     {
-
+        weapon.Fire();
     }
 }

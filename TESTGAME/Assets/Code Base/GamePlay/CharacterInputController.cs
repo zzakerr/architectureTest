@@ -10,31 +10,33 @@ public class CharacterInputController : MonoBehaviour
 
     [SerializeField] private ControlMode m_ControlMode;
 
-    private VirtualGamePad virtualGamepad;
+    private VirtualGamePad virtualGamePad;
+    private GameObject inventoryPanel;
     private Character targetCharacter;
 
     public void SetTargetCharacter(Character character) => targetCharacter = character;
 
-    public void Construct(VirtualGamePad virtualGamePad)
+    public void Construct(VirtualGamePad virtualGamePad,GameObject inventoryPanel)
     {
-        virtualGamepad = virtualGamePad;
+        this.virtualGamePad = virtualGamePad;
+        this.inventoryPanel = inventoryPanel;
     }
 
     private void Start()
     {
         if(m_ControlMode == ControlMode.Keyboard)
         {
-            virtualGamepad.joystick.gameObject.SetActive(false);
-            virtualGamepad.mobileFirePrimary.gameObject.SetActive(false);
-            virtualGamepad.mobileFireSecondary.gameObject.SetActive(false);
+            virtualGamePad.joystick.gameObject.SetActive(false);
+            virtualGamePad.mobileFire.gameObject.SetActive(false);
+            virtualGamePad.mobileinventory.gameObject.SetActive(false);
 
         }
             
         else
         {
-            virtualGamepad.joystick.gameObject.SetActive(true);
-            virtualGamepad.mobileFirePrimary.gameObject.SetActive(true);
-            virtualGamepad.mobileFireSecondary.gameObject.SetActive(true);
+            virtualGamePad.joystick.gameObject.SetActive(true);
+            virtualGamePad.mobileFire.gameObject.SetActive(true);
+            virtualGamePad.mobileinventory.gameObject.SetActive(true);
         }
  
     }
@@ -48,9 +50,24 @@ public class CharacterInputController : MonoBehaviour
 
     private void ControlMobile()
     {
-        var dir = virtualGamepad.joystick.Value;
+        var dir = virtualGamePad.joystick.Value;
         targetCharacter.linearY = dir.y;
         targetCharacter.linearX = dir.x;
+
+        if (virtualGamePad.mobileinventory.IsClick == true)
+        {
+            inventoryPanel.gameObject.SetActive(true);
+        }
+        else
+        {
+            inventoryPanel.gameObject.SetActive(false);
+        }
+
+        if (virtualGamePad.mobileFire.IsHold == true)
+        {
+            targetCharacter.Fire();
+        }
+
     }
 
     private void ControlKeyboard()
